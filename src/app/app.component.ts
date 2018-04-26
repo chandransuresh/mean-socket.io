@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import * as io from 'socket.io-client';
 @Component({
@@ -9,8 +10,8 @@ export class AppComponent implements OnInit{
   title = 'app';
   socket;
   newUserAddedData;
-
-  constructor() {
+  tasks = [];
+  constructor(private http: HttpClient) {
     this.socket = io({transports: ['websocket', 'polling']});
   }
 
@@ -18,6 +19,20 @@ export class AppComponent implements OnInit{
     this.socket.on('newUserAdded', (data) => {
       console.log(data);
       this.newUserAddedData = data;
+    });
+    this.socket.on('newTaskAdded', (data) => {
+      console.log(data);
+      this.tasks.push(data.newTask.name);
+    })
+  }
+
+  addTask(newTask) {
+    this.http.post('/tasks', {
+      taskName: newTask
+    },
+    {observe: 'response'})
+    .subscribe(res => {
+      console.log(res);
     });
   }
 }
