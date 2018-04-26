@@ -25,7 +25,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "", ""]);
+exports.push([module.i, "input[type=text] {\n  width: 100%;\n  padding: 12px 20px;\n  margin: 8px 0;\n  box-sizing: border-box;\n}\n\n.button {\n  background-color: #4CAF50;\n  border: none;\n  color: white;\n  padding: 15px 32px;\n  text-align: center;\n  text-decoration: none;\n  display: inline-block;\n  font-size: 16px;\n}", ""]);
 
 // exports
 
@@ -38,7 +38,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!--The content below is only a placeholder and can be replaced.-->\n<div style=\"text-align:center\">\n  <h1>\n    Total Connected Users: {{ newUserAddedData?.count }}\n  </h1>\n  <input type=\"text\" style=\"width:400px\" placeholder=\"Enter Task\" #task name=\"taskName\" (keyup.enter)=\"addTask(task.value)\">\n  <input type=\"submit\" value=\"Add\" (click)=\"addTask(task.value)\" > \n</div>\n\n<div>\n  <ul>\n    <li *ngFor=\"let task of tasks\">\n      {{ task.name }}\n    </li>\n  </ul>\n</div>\n\n"
+module.exports = "<!--The content below is only a placeholder and can be replaced.-->\n<div style=\"text-align:center\">\n  <h1>\n    Total Connected Users: {{ newUserAddedData?.count }}\n  </h1>\n  <input type=\"text\" style=\"width:400px\" placeholder=\"Enter Task\" #task name=\"taskName\" (keyup.enter)=\"addTask(task.value)\">\n  <input type=\"submit\" class=\"button\" value=\"Add\" (click)=\"addTask(task.value)\" > \n</div>\n\n<div>\n  <ul>\n    <li *ngFor=\"let task of tasks\">\n      {{ task.name }}\n    </li>\n  </ul>\n</div>\n\n"
 
 /***/ }),
 
