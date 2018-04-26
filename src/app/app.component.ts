@@ -22,8 +22,11 @@ export class AppComponent implements OnInit{
     });
     this.socket.on('newTaskAdded', (data) => {
       console.log(data);
-      this.tasks.push(data.newTask.name);
+      this.tasks.push(data.newTask);
     })
+
+    this.http.get<{tasks: any[]}>('/tasks')
+    .subscribe(data => this.tasks = data.tasks);
   }
 
   addTask(newTask) {

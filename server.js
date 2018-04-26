@@ -20,8 +20,19 @@ const Task = mongoose.model('task');
 
 app.use(express.static(path.join(__dirname, 'dist')));
 
+app.get('/tasks', (req, res) => {
+  Task.find(
+  {})
+  .then(tasks => {
+    res.send({tasks: tasks});
+    res.end();
+  })
+  .catch(err => {
+    res.end();
+  })
+});
+
 app.post('/tasks', (req, res) => {
-  console.log('req', req);
   new Task({
     name: req.body.taskName
   })

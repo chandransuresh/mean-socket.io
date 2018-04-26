@@ -38,7 +38,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!--The content below is only a placeholder and can be replaced.-->\n<div style=\"text-align:center\">\n  <h1>\n    Total Connected Users: {{ newUserAddedData?.count }}\n  </h1>\n  <h1>Enter Task</h1>\n\n  <input type=\"text\" style=\"width:400px\" #task name=\"taskName\">\n  <input type=\"submit\" value=\"Add\" (click)=\"addTask(task.value)\"> \n</div>\n\n<div>\n  <ul>\n    <li *ngFor=\"let task of tasks\">\n      {{ task }}\n    </li>\n  </ul>\n</div>\n\n"
+module.exports = "<!--The content below is only a placeholder and can be replaced.-->\n<div style=\"text-align:center\">\n  <h1>\n    Total Connected Users: {{ newUserAddedData?.count }}\n  </h1>\n  <h1>Enter Task</h1>\n\n  <input type=\"text\" style=\"width:400px\" #task name=\"taskName\">\n  <input type=\"submit\" value=\"Add\" (click)=\"addTask(task.value)\"> \n</div>\n\n<div>\n  <ul>\n    <li *ngFor=\"let task of tasks\">\n      {{ task.name }}\n    </li>\n  </ul>\n</div>\n\n"
 
 /***/ }),
 
@@ -78,8 +78,10 @@ var AppComponent = (function () {
         });
         this.socket.on('newTaskAdded', function (data) {
             console.log(data);
-            _this.tasks.push(data.newTask.name);
+            _this.tasks.push(data.newTask);
         });
+        this.http.get('/tasks')
+            .subscribe(function (data) { return _this.tasks = data.tasks; });
     };
     AppComponent.prototype.addTask = function (newTask) {
         this.http.post('/tasks', {
