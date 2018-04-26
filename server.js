@@ -54,12 +54,9 @@ const io = socketIO(server);
 io.set('transports', ['polling', 'websocket']);
 let totalUsers = 0;
 io.on('connection', (socket) => {
-  console.log('New User Connected');
-
   io.emit('newUserAdded', { count: ++totalUsers});
   socket.on('disconnect', () => {
-    --totalUsers;
-    console.log('User disconnected');
+    io.emit('newUserAdded', { count: --totalUsers});
   });
 });
 
