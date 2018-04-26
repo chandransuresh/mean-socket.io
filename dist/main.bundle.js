@@ -82,8 +82,6 @@ var AppComponent = (function () {
         });
     };
     AppComponent.prototype.addTask = function (newTask) {
-        this.tasks.push(newTask);
-        console.log(newTask);
         this.http.post('/tasks', {
             taskName: newTask
         }, { observe: 'response' })
