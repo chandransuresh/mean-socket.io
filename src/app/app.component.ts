@@ -31,11 +31,13 @@ export class AppComponent implements OnInit{
 
   addTask(newTask) {
     this.http.post('/tasks', {
-      taskName: newTask
+      taskName: newTask.value
     },
     {observe: 'response'})
     .subscribe(res => {
-      console.log(res);
+      if (res.status === 200) {
+        newTask.value = '';
+      }
     });
   }
 }

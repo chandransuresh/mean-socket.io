@@ -3,7 +3,7 @@
   <h1>
     Total Connected Users: {{ newUserAddedData?.count }}
   </h1>
-  <input type="text" style="width:400px" placeholder="Enter Task" #task name="taskName" (keyup.enter)="addTask(task.value)">
+  <input type="text" style="width:400px" placeholder="Enter Task" #task name="taskName" (keyup.enter)="addTask(task)">
   <input type="submit" class="button" value="Add" (click)="addTask(task.value)" > 
 </div>
 

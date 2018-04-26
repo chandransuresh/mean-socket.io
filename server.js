@@ -39,6 +39,7 @@ app.post('/tasks', (req, res) => {
   .save()
   .then(task => {
     io.emit('newTaskAdded', { 'newTask': task});
+    res.send({})
     res.end();
   })
   .catch(err => {
